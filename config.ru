@@ -1,3 +1,3 @@
-require './selic'
+require 'selic'
 run Sinatra::Application
 
