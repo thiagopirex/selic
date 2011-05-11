@@ -1,3 +1,3 @@
-require 'selic'
+require '.gems'
 run Sinatra::Application
 
