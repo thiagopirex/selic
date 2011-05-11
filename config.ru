@@ -1,3 +1,3 @@
-require '.gems'
+require './app'
 run Sinatra::Application
 
