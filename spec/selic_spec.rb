@@ -3,20 +3,19 @@ require 'rspec'
 require 'selic'
 
 
-
 describe Selic do
 
 	let(:selic) { Selic.new }
 
-	describe 'getXml' do
+	#describe 'getXml' do
 	
-		let(:xml) { selic.getXml }
+	#	let(:xml) { selic.getXml }
 
-		it 'should open xml with text "Taxa de juros - Meta Selic definida pelo Copom"' do
-			xml.should be
-			xml.content.should match /Taxa de juros - Meta Selic definida pelo Copom/
-		end
-	end
+	#	it 'should open xml with text "Taxa de juros - Meta Selic definida pelo Copom"' do
+	#		xml.should be
+	#		xml.content.should match /Taxa de juros - Meta Selic definida pelo Copom/
+	#	end
+	#end
 
 	describe 'getObjects' do
 		let(:objetos) { selic.getObjects }
@@ -26,12 +25,6 @@ describe Selic do
 		end
 	end
 
-	describe 'calculaMedia' do
-		let(:collection) { Array.new(['2','4','6','8'])}
-		it 'should calculate media and puts result = 5' do
-			selic.calculaMedia(collection).should == 5.0
-		end
-	end
 
 	describe 'gerarUrl' do
 		let(:url) { selic.getURL('2008')}
@@ -39,5 +32,12 @@ describe Selic do
 			selic.getURL('2008').should == 'series-bcb/serie/valores/xml/432%7C01012008%7C31122008'
 		end
 	end
-  
+
+	describe 'getDefaultFile' do
+		let(:xml) { selic.getDefaultFile }
+		it 'should math year 2008' do
+			xml.should be
+			xml.content.should match /2008/
+		end
+	end  
 end

@@ -3,51 +3,99 @@
 	<title>Histórico da Taxa SELIC</title>
 </head>
 <body>
-	</br>
-	<form method="POST">
-	<center>
-		Gráfico histórico da Taxa SELIC em 
-		<!--select onChange="submit">
-			<option id="2008">2008</option>
-			<option id="2009">2009</option>
-			<option id="2010">2010</option>
-			<option id="2011">2011</option>
-		</select-->
+	<div align="center">
+		<h2>Gráfico histórico da Taxa SELIC no ano de 2008 *(dados fictícios)</h2> 
 		</br>
-		Ano para exibição: <%= @ano %> 
+		<!--label style="font-size: 12px;">Para visualizar outros anos, acrescente ao final da <i>url</i> o ano desejado. Exemplo: /2008</label-->
 		</br>
+		</br>
+	</div>
+	<div style="float: right; width: 500px;">
+		</br>
+		<table cellspacing="0" border="1" cellpadding="3">
+			<thead style="background-color: #FFFF99;">
+				<td>Mês</td>
+				<td>Valor</td>
+			</thead>
+			<tbody>
+				<tr>
+					<td>Janeiro</td>
+					<td style="text-align: right;"><%= '%.2f' % @dados[':M1'] %></td>
+				</td>
 
+				<tr>
+					<td>Fevereiro</td>
+					<td style="text-align: right;"><%= '%.2f' % @dados[':M2'] %></td>
+				</td>
+				<tr>
+					<td>Março</td>
+					<td style="text-align: right;"><%= '%.2f' % @dados[':M3'] %></td>
+				</td>
+				<tr>
+					<td>Abril</td>
+					<td style="text-align: right;"><%= '%.2f' % @dados[':M4'] %></td>
+				</td>
+				<tr>
+					<td>Maio</td>
+					<td style="text-align: right;"><%= '%.2f' % @dados[':M5'] %></td>
+				</td>
+				<tr>
+					<td>Junho</td>
+					<td style="text-align: right;"><%= '%.2f' % @dados[':M6'] %></td>
+				</td>
+				<tr>
+					<td>Julho</td>
+					<td style="text-align: right;"><%= '%.2f' % @dados[':M7'] %></td>
+				</td>
+				<tr>
+					<td>Agosto</td>
+					<td style="text-align: right;"><%= '%.2f' % @dados[':M8'] %></td>
+				</td>
+				<tr>
+					<td>Setembro</td>
+					<td style="text-align: right;"><%= @dados[':M9'] %></td>
+				</td>
+				<tr>
+					<td>Outubro</td>
+					<td style="text-align: right;"><%= '%.2f' % @dados[':M10'] %></td>
+				</td>
+				<tr>
+					<td>Novembro</td>
+					<td style="text-align: right;"><%= '%.2f' % @dados[':M11'] %></td>
+				</td>
+				<tr>
+					<td>Dezembro</td>
+					<td style="text-align: right;"><%= '%.2f' % @dados[':M12'] %></td>
+				</td>
+			</tbody>
+		</table>
+	</div>
+	<div style="float: left; position:relative; left: 50px;">
+	<img src='<%= Gchart.line(
+		:data => [ 	@dados[':M1'],
+				@dados[':M2'],
+				@dados[':M3'],
+				@dados[':M4'],
+				@dados[':M5'],
+				@dados[':M6'],
+				@dados[':M7'],
+				@dados[':M8'],
+				@dados[':M9'],
+				@dados[':M10'],
+				@dados[':M11'],
+				@dados[':M12']
 
-		<img src='<%= Gchart.line(
-			:data => [ 	@dados[':M1'],
-					@dados[':M2'],
-					@dados[':M3'],
-					@dados[':M4'],
-					@dados[':M5'],
-					@dados[':M6'],
-					@dados[':M7'],
-					@dados[':M8'],
-					@dados[':M9'],
-					@dados[':M10'],
-					@dados[':M11'],
-					@dados[':M12']
-
-				],	
-			:bar_colors => ["FFCC00"],
-			:stacked => false,
-			:legend => 'Valor da Taxa Selic',
-			:size => "600x360",
-			:max_value => false,
-			:axis_with_labels => ['x','y'],
-			:axis_labels => ['JAN|FEV|MAR|ABR|MAI|JUN|JUL|AGO|SET|OUT|NOV|DEZ','0|10|20']) %>' />
-	</center>
-	</form>
-	</br>
-	</br>
-	</br>
-	</br>
-	</br>
-	Mais informações na <a href="http://www.bcb.gov.br/?SELICDESCRICAO">página</a> do Banco Central do Brasil
+			],	
+		:bar_colors => ["FFCC00"],
+		:stacked => false,
+		:size => "600x360",
+		:max_value => false,
+		:axis_with_labels => ['x'],
+		:axis_labels => ['JAN|FEV|MAR|ABR|MAI|JUN|JUL|AGO|SET|OUT|NOV|DEZ']) %>' />
+	</div>
+	<div style="width: 500px; top: 30px; left:60px; position:relative;">
+		Mais informações na <a href="http://www.bcb.gov.br/?SELICDESCRICAO">página</a> do Banco Central do Brasil
+	</div>
 </body>
 </html>
 
