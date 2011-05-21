@@ -18,4 +18,18 @@ describe Util do
 		end
 	end
 
+	describe 'isNumeric' do
+		let(:response) { Util.isNumeric(3) }
+		it 'should was true' do
+			response.should be true
+		end
+	end
+
+	describe 'is not Numeric' do
+		let(:response) { Util.isNumeric('sd3') }
+		it 'should was false' do
+			response.should be false
+		end
+	end
+
 end

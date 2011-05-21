@@ -12,4 +12,14 @@ class Util
 		return t.strftime("%Y")
 	end
 
+	def self.isNumeric(value)
+		begin
+		    Integer(value)
+		rescue
+	    		false # not numeric
+	  	else
+	    		true # numeric
+	  	end
+	end
+
 end

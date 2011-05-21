@@ -12,7 +12,7 @@ class Selic
 	end
 
 	def getDefaultFile
-		url = "/file_teste.xml"
+		url = "/432.xml"
 		@doc = Nokogiri::XML(File.open(File.dirname(__FILE__).concat(url)))
 		self
 	end
@@ -29,26 +29,22 @@ class Selic
 
 
 	def dados(year)
-		@year = year
 		#Armazena temporariamente os valores diários de determinado mês para calculo da média mensal
 		valores_do_mes = Array.new
 
 		#Variáveis de controle
-		#ano_compare = year.to_s
-		@ano_compare = '2008'
+		ano_compare = year.to_s
+
 		mes_compare = ''
 
 		
 		resultado_mes = {}
-		
-		resultado_ano = {}
 
 
 		#iteração por objeto presente no xml
 		getObjects.each do |obj|
 			ano   = obj.xpath('ano').inner_text
-
-			if @ano_compare.eql? ano
+			if ano_compare.eql? ano
 				mes   = obj.xpath('mes').inner_text
 				if mes_compare.eql? mes
 					valor = obj.xpath('valor').inner_text
@@ -61,7 +57,7 @@ class Selic
 					else
 						#realiza calculo da média
 						pos_array = ':M'.concat(mes_compare)						
-
+		
 						resultado_mes[pos_array] = Util.calculaMedia(valores_do_mes)
 						valores_do_mes.clear
 						valor = obj.xpath('valor').inner_text
@@ -70,7 +66,6 @@ class Selic
 					mes_compare = mes											
 				end
 			end
-			
 		end
 
 		#cálculo da média do último mês lido do XML
@@ -86,6 +81,22 @@ class Selic
 		dataFinal = '3112'
 		pipe = '%7C'
 		return 	url.concat(pipe).concat(dataInicio).concat(year).concat(pipe).concat(dataFinal).concat(year)
+	end
+
+	def getEmpty
+		return 	{	':M1' => 0.0,
+				':M2' => 0.0,
+				':M3' => 0.0,
+				':M4' => 0.0,
+				':M5' => 0.0,
+				':M6' => 0.0,
+				':M7' => 0.0,
+				':M8' => 0.0,
+				':M9' => 0.0,
+				':M10' => 0.0,
+				':M11' => 0.0,
+				':M12' => 0.0
+			}
 	end
 	
 end

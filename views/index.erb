@@ -4,10 +4,11 @@
 </head>
 <body>
 	<div align="center">
-		<h2>Gráfico histórico da Taxa SELIC no ano de 2008 *(dados fictícios)</h2> 
+		<h2>Gráfico dos valores da Taxa SELIC no ano de <%= @year %></h2> 
 		</br>
-		<!--label style="font-size: 12px;">Para visualizar outros anos, acrescente ao final da <i>url</i> o ano desejado. Exemplo: /2008</label-->
-		</br>
+		<label style="font-size: 12px;">Para visualizar outros anos, acrescente ao final da <i>url</i> o ano desejado. Exemplo: /2008</label>
+		</br>		
+		</br><label style="font-size: 14px; color: red;"><%= @info %></label>
 		</br>
 	</div>
 	<div style="float: right; width: 500px;">
@@ -53,7 +54,7 @@
 				</td>
 				<tr>
 					<td>Setembro</td>
-					<td style="text-align: right;"><%= @dados[':M9'] %></td>
+					<td style="text-align: right;"><%= '%.2f' % @dados[':M9'] %></td>
 				</td>
 				<tr>
 					<td>Outubro</td>

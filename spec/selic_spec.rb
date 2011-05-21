@@ -39,5 +39,6 @@ describe Selic do
 			xml.should be
 			xml.content.should match /2008/
 		end
-	end  
+	end
+  
 end
